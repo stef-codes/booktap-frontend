@@ -152,8 +152,11 @@ function createComment() {
   } )
     .then(resp => resp.json())
     .then(comment => {
-      debugger
-    // document.querySelector('.card-text').innerHTML += `<br>${comment.content} - ${comment.comment_type}<br>`
+      // debugger
+
+    document.querySelector('.col').dataset.id = comment.book_id 
+    
+    document.querySelector('.card-text').innerHTML += `<br>${comment.content} - ${comment.comment_type}<br>`
     // document.querySelectorAll('.card-text').filter
     // [...document.querySelectorAll('.card-text')]
 
