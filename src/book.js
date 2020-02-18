@@ -48,6 +48,7 @@ class Book {
         // add comments 
         let book_comments = document.createElement('p')
         book_comments.className = "card-text"
+        // book_comments.setAttribute("data-id",this.id)
 
         this.comments.forEach(comment => {
         book_comments.innerHTML += `<br>${comment.content} - ${comment.comment_type}<br>`
