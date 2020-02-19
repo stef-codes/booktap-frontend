@@ -1,2 +1,1 @@
 # booktap-frontend-ui
-# booktap
