@@ -114,7 +114,6 @@ fetch(`${BASE_URL}/books/${book_id}`)
   document.querySelector("#comment-form").remove()
 let formDiv = document.createElement("div")
 formDiv.id = "comment-form"
-    // formDiv.innerHTML = `<h3>${book.title}</h3>`
     let html = `
     <form>
     <input type="hidden" id="book_id" name="book_id" value=${book.id}></br>
