@@ -45,31 +45,26 @@ class Book {
         card_title.className = "card-title"
         card_title.innerHTML += `${this.title}`
 
-        // add comments 
+        // add card text area for comments
         let book_comments = document.createElement('p')
         book_comments.className = "card-text"
-        // book_comments.setAttribute("data-id",this.id)
 
+        // add comments 
         this.comments.forEach(comment => {
         book_comments.innerHTML += `<br>${comment.content} - ${comment.comment_type}<br>`
         })
-        // book_comments.innerHTML += "testing this out"
 
         // add card footer
         let card_footer = document.createElement('div')
         card_footer.classList.add("card-footer")
 
         // add footer button
-        // card_footer.innerHTML += `<a href="#" onclick='displayCreateCommentForm();return false;'>Add a Comment</a>`
         let comment_button = document.createElement('button')
-        // comment_button.href = "#"
+  
         comment_button.classList.add("btn")
         comment_button.classList.add("btn-primary")
         comment_button.innerHTML = "Add Comment"
-        // comment_button.onclick = displayCreateCommentForm()
-        // comment_button.add
-        //book_div.innerHTML += `<a href="#" onclick='displayCreateCommentForm();return false;'>Add a Comment</a>`
-  
+    
 
 
         // display comment form from button
@@ -77,6 +72,7 @@ class Book {
 
         
 
+        // Add newly created elements to the DOM
         books_area.appendChild(book_div)
 
         book_div.appendChild(book_card_div)
