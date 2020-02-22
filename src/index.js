@@ -69,8 +69,7 @@ function displayCreateBookForm(){
 }
 
 
-//add new book to database and page
-
+//add new book to database and display new book on page
 function createBook(){
   const book = {
       title: document.getElementById('title').value,
@@ -133,7 +132,6 @@ formDiv.id = "comment-form"
 
 function createComment() {
   event.preventDefault()
-  // let book_id = event.target.book_id.value
 
   const comment = {
     content: event.target.content.value,
@@ -152,48 +150,10 @@ function createComment() {
     .then(resp => resp.json())
     .then(comment => {
 
-
-
-    document.querySelector(`div [data-id="${comment.book_id}"]`).querySelector('.card-text').innerHTML += `<br>${comment.content} - ${comment.comment_type}<br>`
-
-
-
-
-    // document.querySelector('.col').dataset.id = comment.book_id 
-    
-    // document.querySelector('.card-text').innerHTML += `<br>${comment.content} - ${comment.comment_type}<br>`
-    // document.querySelectorAll('.card-text').filter
-    // [...document.querySelectorAll('.card-text')]
-
-    // document.querySelector('#comment-list').innerHTML += `
-    // <li><a href="#" data-id="${comment.id}">${comment.content}</a>
-    //  - ${comment.comment_type} 
-    //  <button data-id=${comment.id} onclick="editbook(${comment.id})"; return false;>Edit</button>
-    //  <button data-id=${comment.id} onclick="removebook(${comment.id})"; return false;>Delete</button>
-    //  </li>
-    // `
-
-    // [...document.querySelectorAll('.col-lg-3.col-md-6.mb-4')] // works 
-
-
-
-    // var element = document.getElementById('myDivID');
-    // var dataID = element.getAttribute('data-id');
-
-    // [...document.querySelectorAll('.col')]
-    // var ages = [32, 33, 16, 40];
-
-    // function checkAdult(age) {
-    //   return age >= 18;
-    // }
-
-    // function myFunction() {
-    //   document.getElementById("demo").innerHTML = ages.filter(checkAdult);
-    // }
+      document.querySelector(`div [data-id="${comment.book_id}"]`).querySelector('.card-text').innerHTML += `<br>${comment.content} - ${comment.comment_type}<br>`
 
      })
 
     document.querySelector("#comment-form").remove()
 
-    // location.reload()
 }
