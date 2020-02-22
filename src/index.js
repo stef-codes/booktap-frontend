@@ -115,32 +115,51 @@ function fetchBook() {
 
 //Create Comments Form
 function displayCreateCommentForm(event) {
+
+  // retrieve book id stored as a data-id attribute on the the top level card element
   let book_id = event.target.parentElement.parentElement.parentElement.dataset.id
-fetch(`${BASE_URL}/books/${book_id}`)
+  
+  // retrieve data from an individual book object, passed by the book_id of the card or book selected
+  fetch(`${BASE_URL}/books/${book_id}`)
   .then(resp => resp.json())
   .then(book => {
+
+    // 
     let card_footer = event.target.parentElement
-     if(document.querySelector("#comment-form"))
-  document.querySelector("#comment-form").remove()
-let formDiv = document.createElement("div")
-formDiv.id = "comment-form"
+
+
+    // remove comment form if it already exists 
+    if(document.querySelector("#comment-form"))
+      document.querySelector("#comment-form").remove()
+
+    //create DOM element for the comment form
+    let formDiv = document.createElement("div")
+    formDiv.id = "comment-form"
+
+    //create comment form 
     let html = `
-    <form>
-    <input type="hidden" id="book_id" name="book_id" value=${book.id}></br>
-    <label>Comment</label>
-    <input type ="text" id="content" name="content"></br>
-    <label>Type</label>
-    <input type ="text" id="comment_type" name-"comment_type"></br>
-    <input type="submit">
-    </form>
-    `
+      <form>
+      <input type="hidden" id="book_id" name="book_id" value=${book.id}></br>
+      <label>Comment</label>
+      <input type ="text" id="content" name="content"></br>
+      <label>Type</label>
+      <input type ="text" id="comment_type" name-"comment_type"></br>
+      <input type="submit">
+      </form>
+      `
+    //add form to comment form element 
     formDiv.innerHTML += html
+
+    // add event listener to the submit button on the comment form to create a new comment 
     let form = formDiv.querySelector('form')
     form.addEventListener("submit", createComment)
+
+    // add comment form to the card footer element 
     card_footer.append(formDiv)
   })
 }
 
+// add new comment to the database and display it on the associated book card 
 function createComment() {
   event.preventDefault()
 
