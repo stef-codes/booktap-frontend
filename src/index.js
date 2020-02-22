@@ -159,8 +159,6 @@ function createComment() {
 
 
 
-    // debugger
-
     // document.querySelector('.col').dataset.id = comment.book_id 
     
     // document.querySelector('.card-text').innerHTML += `<br>${comment.content} - ${comment.comment_type}<br>`
