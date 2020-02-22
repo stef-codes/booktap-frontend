@@ -30,11 +30,14 @@ class Book {
         book_card_div.classList.add("card")
 
 
-        // add images
+        // create image element for card
         let book_img = document.createElement('img')
+        book_img.classList.add("card-img-top")
+
+        //add book cover/image to card
         let bLink = `./src/${this.imageLink}` 
         book_img.src = bLink
-        book_img.classList.add("card-img-top")
+    
 
         // add card body 
         let card_body = document.createElement('div')
@@ -43,6 +46,8 @@ class Book {
         // add card title 
         let card_title = document.createElement('h4')
         card_title.className = "card-title"
+
+        // add book title to card
         card_title.innerHTML += `${this.title}`
 
         // add card text area for comments
