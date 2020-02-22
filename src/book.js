@@ -75,23 +75,8 @@ class Book {
         // display comment form from button
         comment_button.addEventListener("click", (event) => displayCreateCommentForm(event), false)
 
-
-        // add title 
-        // book_div.innerHTML += `<h3>${this.title}</h3>`
-   
-        // let comment_div = document.createElement('div')
-        // comment_div.classList.add("comments");
-        // book_div.append(comment_div)
-  
-        // //add comments 
-        // this.comments.forEach(comment => {
-        // comment_div.innerHTML += `<br>${comment.content} - ${comment.comment_type}<br>`
-        // })
-   
-        // //add comment link
-        // book_div.innerHTML += `<a href="#" onclick='displayCreateCommentForm();return false;'>Add a Comment</a>`
-  
         
+
         books_area.appendChild(book_div)
 
         book_div.appendChild(book_card_div)
