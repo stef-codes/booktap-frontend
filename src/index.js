@@ -4,7 +4,7 @@ const BOOKS_URL = 'http://localhost:3000/books'
 document.addEventListener("DOMContentLoaded", () => {
      fetchBooks()
 
-     //add event listener to add book button
+     //add event listener to add book button when page loads
      let addBook = document.querySelector(".btn.btn-primary.btn-lg")
      addBook.addEventListener("click", (event) => displayCreateBookForm(event), false)
 
