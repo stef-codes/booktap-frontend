@@ -2,6 +2,7 @@ const BASE_URL = 'http://localhost:3000'
 const BOOKS_URL = 'http://localhost:3000/books'
 
 document.addEventListener("DOMContentLoaded", () => {
+
      fetchBooks()
 
      //add event listener to add book button when page loads
@@ -11,16 +12,20 @@ document.addEventListener("DOMContentLoaded", () => {
   })
 
 
+
+  // retrieve all book objects from the database 
    function fetchBooks() {
     fetch(BOOKS_URL)
     .then(resp => resp.json())
     .then(books => renderBooks(books));
    }
 
+   // display fetch results on page
   function renderBooks(books) {
     const books_area = document.querySelector(".row")
     books_area.innerHTML = ""; 
 
+  // interate over book objects to retrive data for each book
     books.forEach(book => {
       let objB = new Book(book)
       objB.render()
@@ -28,11 +33,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   
-
+  //
   function clearForm(){
     let bookFormDiv = document.getElementById("book-form")
     bookFormDiv.innerHTML = ''
-}
+  }
 
 
 
@@ -62,9 +67,15 @@ function displayCreateBookForm(){
       <input type ="submit" value="Create book">
   `
   bookFormDiv.innerHTML += html
+
+  //create variables for DOM elements
   let form = bookFormDiv.querySelector('form')
   let jumbo = document.querySelector(".jumbotron")
+
+  //add event listener to the submit button to create a new book using the createBook function
   form.addEventListener("submit", createBook)
+
+  // add form to create book to the DOM
   jumbo.append(bookFormDiv)
 }
 
