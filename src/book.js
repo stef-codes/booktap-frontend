@@ -30,11 +30,14 @@ class Book {
         book_card_div.classList.add("card")
 
 
-        // add images
+        // create image element for card
         let book_img = document.createElement('img')
+        book_img.classList.add("card-img-top")
+
+        //add book cover/image to card
         let bLink = `./src/${this.imageLink}` 
         book_img.src = bLink
-        book_img.classList.add("card-img-top")
+    
 
         // add card body 
         let card_body = document.createElement('div')
@@ -43,55 +46,38 @@ class Book {
         // add card title 
         let card_title = document.createElement('h4')
         card_title.className = "card-title"
+
+        // add book title to card
         card_title.innerHTML += `${this.title}`
 
-        // add comments 
+        // add card text area for comments
         let book_comments = document.createElement('p')
         book_comments.className = "card-text"
-        // book_comments.setAttribute("data-id",this.id)
 
+        // add comments 
         this.comments.forEach(comment => {
         book_comments.innerHTML += `<br>${comment.content} - ${comment.comment_type}<br>`
         })
-        // book_comments.innerHTML += "testing this out"
 
         // add card footer
         let card_footer = document.createElement('div')
         card_footer.classList.add("card-footer")
 
         // add footer button
-        // card_footer.innerHTML += `<a href="#" onclick='displayCreateCommentForm();return false;'>Add a Comment</a>`
         let comment_button = document.createElement('button')
-        // comment_button.href = "#"
+  
         comment_button.classList.add("btn")
         comment_button.classList.add("btn-primary")
         comment_button.innerHTML = "Add Comment"
-        // comment_button.onclick = displayCreateCommentForm()
-        // comment_button.add
-        //book_div.innerHTML += `<a href="#" onclick='displayCreateCommentForm();return false;'>Add a Comment</a>`
-  
+    
 
 
         // display comment form from button
         comment_button.addEventListener("click", (event) => displayCreateCommentForm(event), false)
 
-
-        // add title 
-        // book_div.innerHTML += `<h3>${this.title}</h3>`
-   
-        // let comment_div = document.createElement('div')
-        // comment_div.classList.add("comments");
-        // book_div.append(comment_div)
-  
-        // //add comments 
-        // this.comments.forEach(comment => {
-        // comment_div.innerHTML += `<br>${comment.content} - ${comment.comment_type}<br>`
-        // })
-   
-        // //add comment link
-        // book_div.innerHTML += `<a href="#" onclick='displayCreateCommentForm();return false;'>Add a Comment</a>`
-  
         
+
+        // Add newly created elements to the DOM
         books_area.appendChild(book_div)
 
         book_div.appendChild(book_card_div)

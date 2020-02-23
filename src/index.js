@@ -2,25 +2,30 @@ const BASE_URL = 'http://localhost:3000'
 const BOOKS_URL = 'http://localhost:3000/books'
 
 document.addEventListener("DOMContentLoaded", () => {
+
      fetchBooks()
 
-     //add event listener to add book button
+     //add event listener to add book button when page loads
      let addBook = document.querySelector(".btn.btn-primary.btn-lg")
      addBook.addEventListener("click", (event) => displayCreateBookForm(event), false)
 
   })
 
 
+
+  // retrieve all book objects from the database 
    function fetchBooks() {
     fetch(BOOKS_URL)
     .then(resp => resp.json())
     .then(books => renderBooks(books));
    }
 
+   // display fetch results on page
   function renderBooks(books) {
     const books_area = document.querySelector(".row")
     books_area.innerHTML = ""; 
 
+  // interate over book objects to retrive data for each book
     books.forEach(book => {
       let objB = new Book(book)
       objB.render()
@@ -28,11 +33,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   
-
+  //
   function clearForm(){
     let bookFormDiv = document.getElementById("book-form")
     bookFormDiv.innerHTML = ''
-}
+  }
 
 
 
@@ -62,15 +67,20 @@ function displayCreateBookForm(){
       <input type ="submit" value="Create book">
   `
   bookFormDiv.innerHTML += html
+
+  //create variables for DOM elements
   let form = bookFormDiv.querySelector('form')
   let jumbo = document.querySelector(".jumbotron")
+
+  //add event listener to the submit button to create a new book using the createBook function
   form.addEventListener("submit", createBook)
+
+  // add form to create book to the DOM
   jumbo.append(bookFormDiv)
 }
 
 
-//add new book to database and page
-
+//add new book to database and display new book on page
 function createBook(){
   const book = {
       title: document.getElementById('title').value,
@@ -105,35 +115,53 @@ function fetchBook() {
 
 //Create Comments Form
 function displayCreateCommentForm(event) {
+
+  // retrieve book id stored as a data-id attribute on the the top level card element
   let book_id = event.target.parentElement.parentElement.parentElement.dataset.id
-fetch(`${BASE_URL}/books/${book_id}`)
+  
+  // retrieve data from an individual book object, passed by the book_id of the card or book selected
+  fetch(`${BASE_URL}/books/${book_id}`)
   .then(resp => resp.json())
   .then(book => {
+
+    // 
     let card_footer = event.target.parentElement
-     if(document.querySelector("#comment-form"))
-  document.querySelector("#comment-form").remove()
-let formDiv = document.createElement("div")
-formDiv.id = "comment-form"
+
+
+    // remove comment form if it already exists 
+    if(document.querySelector("#comment-form"))
+      document.querySelector("#comment-form").remove()
+
+    //create DOM element for the comment form
+    let formDiv = document.createElement("div")
+    formDiv.id = "comment-form"
+
+    //create comment form 
     let html = `
-    <form>
-    <input type="hidden" id="book_id" name="book_id" value=${book.id}></br>
-    <label>Comment</label>
-    <input type ="text" id="content" name="content"></br>
-    <label>Type</label>
-    <input type ="text" id="comment_type" name-"comment_type"></br>
-    <input type="submit">
-    </form>
-    `
+      <form>
+      <input type="hidden" id="book_id" name="book_id" value=${book.id}></br>
+      <label>Comment</label>
+      <input type ="text" id="content" name="content"></br>
+      <label>Type</label>
+      <input type ="text" id="comment_type" name-"comment_type"></br>
+      <input type="submit">
+      </form>
+      `
+    //add form to comment form element 
     formDiv.innerHTML += html
+
+    // add event listener to the submit button on the comment form to create a new comment 
     let form = formDiv.querySelector('form')
     form.addEventListener("submit", createComment)
+
+    // add comment form to the card footer element 
     card_footer.append(formDiv)
   })
 }
 
+// add new comment to the database and display it on the associated book card 
 function createComment() {
   event.preventDefault()
-  // let book_id = event.target.book_id.value
 
   const comment = {
     content: event.target.content.value,
@@ -152,48 +180,10 @@ function createComment() {
     .then(resp => resp.json())
     .then(comment => {
 
-
-
-    document.querySelector(`div [data-id="${comment.book_id}"]`).querySelector('.card-text').innerHTML += `<br>${comment.content} - ${comment.comment_type}<br>`
-
-
-
-
-    // document.querySelector('.col').dataset.id = comment.book_id 
-    
-    // document.querySelector('.card-text').innerHTML += `<br>${comment.content} - ${comment.comment_type}<br>`
-    // document.querySelectorAll('.card-text').filter
-    // [...document.querySelectorAll('.card-text')]
-
-    // document.querySelector('#comment-list').innerHTML += `
-    // <li><a href="#" data-id="${comment.id}">${comment.content}</a>
-    //  - ${comment.comment_type} 
-    //  <button data-id=${comment.id} onclick="editbook(${comment.id})"; return false;>Edit</button>
-    //  <button data-id=${comment.id} onclick="removebook(${comment.id})"; return false;>Delete</button>
-    //  </li>
-    // `
-
-    // [...document.querySelectorAll('.col-lg-3.col-md-6.mb-4')] // works 
-
-
-
-    // var element = document.getElementById('myDivID');
-    // var dataID = element.getAttribute('data-id');
-
-    // [...document.querySelectorAll('.col')]
-    // var ages = [32, 33, 16, 40];
-
-    // function checkAdult(age) {
-    //   return age >= 18;
-    // }
-
-    // function myFunction() {
-    //   document.getElementById("demo").innerHTML = ages.filter(checkAdult);
-    // }
+      document.querySelector(`div [data-id="${comment.book_id}"]`).querySelector('.card-text').innerHTML += `<br>${comment.content} - ${comment.comment_type}<br>`
 
      })
 
     document.querySelector("#comment-form").remove()
 
-    // location.reload()
 }
