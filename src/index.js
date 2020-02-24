@@ -103,14 +103,6 @@ function createBook(){
   })
 }
 
-// for testing
-function fetchBook() {
-  let book_id = event.target.parentElement.dataset.id
-
-  fetch(BASE_URL+'/books/'+book_id)
-  .then(resp => resp.json())
-  .then(book => console.log(book));
- }
 
 
 //Create Comments Form
@@ -179,6 +171,7 @@ function createComment() {
   } )
     .then(resp => resp.json())
     .then(comment => {
+      
 
       document.querySelector(`div [data-id="${comment.book_id}"]`).querySelector('.card-text').innerHTML += `<br>${comment.content} - ${comment.comment_type}<br>`
 
