@@ -171,7 +171,7 @@ function createComment() {
   } )
     .then(resp => resp.json())
     .then(comment => {
-      
+
 
       document.querySelector(`div [data-id="${comment.book_id}"]`).querySelector('.card-text').innerHTML += `<br>${comment.content} - ${comment.comment_type}<br>`
 
