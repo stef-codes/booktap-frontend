@@ -103,11 +103,9 @@ class Book {
 
     let book_area = document.querySelector(".jumbotron")
 
-     book_area.innerHTML += `
-      <li><a href="#" data-id="${this.id}">${this.title}</a>
-       - ${this.author} ${this.imageLink}
-       </li>
-      `
+     book_area.innerHTML += 
+      `<a href="#" data-id="${this.id}">${this.title}</a>
+       - ${this.author} ${this.imageLink}`
     
     }
 
