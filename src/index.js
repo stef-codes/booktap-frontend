@@ -9,7 +9,35 @@ document.addEventListener("DOMContentLoaded", () => {
      let addBook = document.querySelector(".btn.btn-primary.btn-lg")
      addBook.addEventListener("click", (event) => displayCreateBookForm(event), false)
 
+     //add event listener to add order book button when page loads
+     let bookOrder = document.querySelector(".btn.btn-secondary.btn-lg")
+     bookOrder.addEventListener("click", (event) => anotherFetch(event), false)
+
   })
+
+  function anotherFetch() {
+    //Order books alphabetically books.sort
+
+    
+    fetch(BOOKS_URL)
+    .then(resp => resp.json())
+    .then(books => orderBooks(books)) ;
+    }
+
+    function orderBooks(books) {
+      //Order books alphabetically books.sort
+      let sortedBooks = books.sort(function(a, b) {
+        if (a.title < b.title) {
+          return -1;
+        }
+        if (a.title > b.title) {
+          return 1;
+        }
+        // a must be equal to b
+        return 0;
+      })
+      renderBooks(sortedBooks)
+    }
 
 
 
@@ -19,6 +47,9 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(resp => resp.json())
     .then(books => renderBooks(books));
    }
+
+
+
 
    // display fetch results on page
   function renderBooks(books) {
@@ -38,8 +69,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let bookFormDiv = document.getElementById("book-form")
     bookFormDiv.innerHTML = ''
   }
-
-
 
 //show book form 
 function displayCreateBookForm(){
@@ -102,6 +131,8 @@ function createBook(){
       clearForm()
   })
 }
+
+//sort books
 
 
 

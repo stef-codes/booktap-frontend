@@ -50,6 +50,12 @@ class Book {
         // add book title to card
         card_title.innerHTML += `${this.title}`
 
+        //Order books alphabetically books.sort()
+        function orderBooks() {
+        let book_title = this.title
+            book_title.sort()
+        }
+
         // add card text area for comments
         let book_comments = document.createElement('p')
         book_comments.className = "card-text"
@@ -108,6 +114,7 @@ class Book {
        - ${this.author} ${this.imageLink}`
     
     }
+
 
 
 }
