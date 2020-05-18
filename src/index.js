@@ -1,5 +1,5 @@
-const BASE_URL = 'http://localhost:3000'
-const BOOKS_URL = 'http://localhost:3000/books'
+const BASE_URL = 'https://booktap-api.herokuapp.com/'
+const BOOKS_URL = 'https://booktap-api.herokuapp.com/books'
 
 document.addEventListener("DOMContentLoaded", () => {
 
