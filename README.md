@@ -8,6 +8,8 @@ This project runs with a Vanilla Javascript front-end found in this repository a
 
 https://booktap.netlify.app/ (It takes some time to load. But it's worth the wait. 😊)
 
+<img src="./booktap.png">
+
 ## Installation
 
 Make sure you start the Rails backend here: 
