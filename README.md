@@ -1,4 +1,4 @@
-# booktap-frontend-ui
+# booktap-frontend
 
 BookTap is a home for books and comments related to those books.
 
