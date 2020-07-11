@@ -6,6 +6,8 @@ Plently of times I've read books. But, I can't remember my favorite quotes or th
 
 This project runs with a Vanilla Javascript front-end found in this repository and a Rails backend with a Postgres database. Bootstrap is used for styling. 
 
+https://booktap.netlify.app/ (It takes some time to load. But it's worth the wait. 😊)
+
 ## Installation
 
 Make sure you start the Rails backend here: 
